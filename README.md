@@ -21,5 +21,5 @@ Run:
 curl localhost:8080
 ```
 ```
-Hello World!
+Data(id=324, title=Hello, description=This is the response)
 ```

@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm") version "2.0.0"
     id("io.ktor.plugin") version "2.3.11"
     id("org.graalvm.buildtools.native") version "0.9.8"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
 
 group = "org.jetbrains"
@@ -31,14 +32,14 @@ graalvmNative {
                 vendor.set(JvmVendorSpec.matching("GraalVM Community"))
             })
 
-
             fallback.set(false)
             verbose.set(true)
 
             with(buildArgs) {
                 add("--initialize-at-build-time=ch.qos.logback")
-                add("--initialize-at-build-time=io.ktor,kotlin")
+                add("--initialize-at-build-time=io.ktor,kotlin,kotlinx.serialization")
                 add("--initialize-at-build-time=org.slf4j.LoggerFactory")
+                add("--initialize-at-build-time=ch.qos.logback.classic.Logger")
 
                 add("--initialize-at-run-time=io.netty.handler.ssl.BouncyCastleAlpnSslUtils")
                 add("--initialize-at-run-time=io.netty.channel.epoll.Epoll")
@@ -55,24 +56,20 @@ graalvmNative {
                 add("--initialize-at-run-time=io.netty.channel.unix.Limits")
                 add("--initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger")
 
-//                add("--trace-class-initialization=io.netty.util.AbstractReferenceCounted")
-//                add("--trace-class-initialization=io.netty.channel.DefaultFileRegion")
-
                 add("-H:+InstallExitHandlers")
                 add("-H:+ReportUnsupportedElementsAtRuntime")
                 add("-H:+ReportExceptionStackTraces")
+                add("-H:+BuildOutputColorful")
             }
             imageName.set("graalvm-server")
         }
     }
 }
 
-
-
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
-    implementation("io.ktor:ktor-server-netty-jvm")
+    implementation("io.ktor:ktor-server-cio")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm")
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    testImplementation("io.ktor:ktor-server-tests-jvm")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
