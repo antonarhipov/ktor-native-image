@@ -73,6 +73,9 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
+  "name":"io.ktor.http.HttpStatusCode"
+},
+{
   "name":"io.ktor.network.selector.InterestSuspensionsMap",
   "fields":[{"name":"acceptHandlerReference"}, {"name":"connectHandlerReference"}, {"name":"readHandlerReference"}, {"name":"writeHandlerReference"}]
 },
@@ -108,6 +111,9 @@
   "fields":[{"name":"_closed"}, {"name":"_readOp"}, {"name":"_state"}, {"name":"_writeOp"}]
 },
 {
+  "name":"io.ktor.utils.io.ByteReadChannel"
+},
+{
   "name":"io.ktor.utils.io.core.internal.ChunkBuffer",
   "fields":[{"name":"nextRef"}, {"name":"refCount"}]
 },
@@ -134,7 +140,15 @@
   "name":"java.lang.ClassValue"
 },
 {
+  "name":"java.lang.Object",
+  "allDeclaredFields":true
+},
+{
   "name":"java.lang.RuntimePermission"
+},
+{
+  "name":"java.lang.Throwable",
+  "allDeclaredFields":true
 },
 {
   "name":"java.net.NetPermission"
@@ -154,6 +168,9 @@
 },
 {
   "name":"java.security.SecurityPermission"
+},
+{
+  "name":"java.util.List"
 },
 {
   "name":"java.util.PropertyPermission"
@@ -180,6 +197,9 @@
 },
 {
   "name":"kotlin.Unit"
+},
+{
+  "name":"kotlin.collections.List"
 },
 {
   "name":"kotlin.jvm.internal.DefaultConstructorMarker"

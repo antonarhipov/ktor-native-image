@@ -26,6 +26,7 @@ graalvmNative {
     binaries {
 
         named("main") {
+            resources.autodetect()
 
             javaLauncher.set(javaToolchains.launcherFor {
                 languageVersion.set(JavaLanguageVersion.of(21))
